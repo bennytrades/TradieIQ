@@ -3,6 +3,9 @@
   "version": "1.0.1",
   "description": "TradieIQ - Smart job management for Australian trades",
   "type": "module",
+  "engines": {
+    "node": ">=18.0.0"
+  },
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -12,6 +15,6 @@
     "firebase": "^10.5.0"
   },
   "devDependencies": {
-    "vite": "^4.4.5"
+    "vite": "^5.0.0"
   }
 }
