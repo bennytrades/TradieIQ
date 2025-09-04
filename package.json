@@ -1,0 +1,20 @@
+{
+  "name": "tradie-note-ai",
+  "version": "1.0.0",
+  "description": "Smart job management for Australian trades",
+  "main": "index.js",
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build",
+    "preview": "vite preview"
+  },
+  "dependencies": {
+    "firebase": "^10.5.0"
+  },
+  "devDependencies": {
+    "vite": "^4.4.5"
+  },
+  "keywords": ["tradie", "job-management", "australia"],
+  "author": "Your Name",
+  "license": "MIT"
+}
