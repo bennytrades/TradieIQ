@@ -6,10 +6,10 @@
     <title>TradieIQ - Smart Job Management for Australian Trades</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="/style.css">
+    <link rel="stylesheet" href="./style.css">
 </head>
 <body class="bg-gray-50">
-    <!-- Notification Toast -->
+    <!-- Notification -->
     <div id="notification" class="notification">
         <div class="flex items-center gap-3">
             <i class="fas fa-check-circle text-green-500"></i>
@@ -30,9 +30,9 @@
         </div>
     </div>
 
-    <!-- Sign In View -->
+    <!-- Sign In Page -->
     <div id="signInView" class="hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4">
-        <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md fade-in">
+        <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
             <div class="text-center mb-8">
                 <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full mb-4 shadow-lg">
                     <i class="fas fa-clipboard-check text-white text-2xl"></i>
@@ -45,30 +45,18 @@
                 <div class="space-y-4">
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <div class="relative">
-                            <i class="fas fa-envelope absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="email" id="emailInput" placeholder="your@email.com" required
-                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-                        </div>
+                        <input type="email" id="emailInput" placeholder="your@email.com" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
                     <div>
                         <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                        <div class="relative">
-                            <i class="fas fa-lock absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                            <input type="password" id="passwordInput" placeholder="••••••••" required
-                                class="w-full pl-10 pr-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500 transition">
-                        </div>
-                    </div>
-                    <div class="flex items-center justify-between">
-                        <label class="flex items-center">
-                            <input type="checkbox" class="mr-2 rounded text-blue-600">
-                            <span class="text-sm text-gray-600">Remember me</span>
-                        </label>
+                        <input type="password" id="passwordInput" placeholder="••••••••" required
+                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
                     </div>
                 </div>
 
                 <button type="submit" id="signInBtn"
-                    class="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition shadow-md">
+                    class="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition">
                     Sign In
                 </button>
             </form>
@@ -80,14 +68,13 @@
         </div>
     </div>
 
-    <!-- Dashboard View -->
+    <!-- Dashboard -->
     <div id="dashboardView" class="hidden h-screen flex">
         <!-- Sidebar -->
         <aside class="w-64 bg-white border-r border-gray-200 flex flex-col">
-            <!-- Logo -->
             <div class="p-4 border-b">
                 <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center shadow">
+                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
                         <i class="fas fa-clipboard-check text-white"></i>
                     </div>
                     <div>
@@ -97,7 +84,7 @@
                 </div>
             </div>
 
-            <!-- Quick Stats - Dynamic -->
+            <!-- Stats -->
             <div class="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b">
                 <div class="flex justify-around text-center">
                     <div>
@@ -117,36 +104,23 @@
                 </div>
             </div>
 
-            <!-- Search -->
-            <div class="p-4">
-                <div class="relative">
-                    <i class="fas fa-search absolute left-3 top-1/2 -translate-y-1/2 text-gray-400"></i>
-                    <input type="text" placeholder="Search jobs..." 
-                        onkeyup="searchJobs(this.value)"
-                        class="w-full pl-10 pr-3 py-2 bg-gray-50 border border-gray-200 rounded-lg text-sm focus:outline-none focus:ring-2 focus:ring-blue-500">
-                </div>
-            </div>
-            
             <!-- New Job Button -->
-            <div class="px-4 pb-4">
+            <div class="p-4">
                 <button onclick="createNewJob()" 
-                    class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition shadow flex items-center justify-center gap-2">
-                    <i class="fas fa-plus"></i>
-                    New Job
+                    class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition">
+                    <i class="fas fa-plus mr-2"></i>New Job
                 </button>
             </div>
 
-            <!-- Jobs List - Dynamic -->
+            <!-- Jobs List -->
             <div class="flex-1 overflow-y-auto px-2">
                 <div class="text-xs font-semibold text-gray-500 uppercase px-3 mb-2">Your Jobs</div>
                 <div id="jobsList" class="space-y-1">
-                    <div class="p-4 text-center text-sm text-gray-500">
-                        Loading your jobs...
-                    </div>
+                    <div class="p-4 text-center text-sm text-gray-500">Loading...</div>
                 </div>
             </div>
 
-            <!-- User Menu - Dynamic -->
+            <!-- User Info -->
             <div class="p-4 border-t bg-gray-50">
                 <div class="flex items-center gap-3">
                     <div class="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center">
@@ -163,19 +137,19 @@
             </div>
         </aside>
 
-        <!-- Main Content - Dynamic -->
+        <!-- Main Content -->
         <main class="flex-1 bg-gradient-to-br from-gray-50 to-blue-50 overflow-auto">
             <div class="p-8">
                 <div class="max-w-7xl mx-auto">
-                    <!-- Welcome Header - Dynamic -->
-                    <div class="mb-8 fade-in">
-                        <h1 class="text-4xl font-bold text-gray-900 mb-2">Welcome back, <span id="welcomeUserName">User</span>! 👋</h1>
+                    <!-- Welcome -->
+                    <div class="mb-8">
+                        <h1 class="text-4xl font-bold text-gray-900 mb-2">Welcome back, <span id="welcomeUserName">User</span>!</h1>
                         <p class="text-gray-600 text-lg" id="welcomeStats">Loading your job statistics...</p>
                     </div>
 
-                    <!-- Stats Cards - Dynamic -->
+                    <!-- Stats Cards -->
                     <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="bg-white rounded-xl p-6 border shadow-sm">
                             <div class="flex items-center justify-between mb-3">
                                 <span class="text-gray-500 text-sm font-medium">Total Value</span>
                                 <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
@@ -183,10 +157,9 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold text-gray-900" id="totalValue">$0</div>
-                            <div class="text-xs text-gray-600 mt-2">All active jobs</div>
                         </div>
 
-                        <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="bg-white rounded-xl p-6 border shadow-sm">
                             <div class="flex items-center justify-between mb-3">
                                 <span class="text-gray-500 text-sm font-medium">Active Jobs</span>
                                 <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
@@ -194,10 +167,9 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold text-gray-900" id="activeJobsCount">0</div>
-                            <div class="text-xs text-gray-600 mt-2" id="activeJobsDetail">No active jobs</div>
                         </div>
 
-                        <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="bg-white rounded-xl p-6 border shadow-sm">
                             <div class="flex items-center justify-between mb-3">
                                 <span class="text-gray-500 text-sm font-medium">Pending Quotes</span>
                                 <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
@@ -205,10 +177,9 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold text-gray-900" id="quotedJobsCount">0</div>
-                            <div class="text-xs text-gray-600 mt-2" id="quotedJobsDetail">No quotes pending</div>
                         </div>
 
-                        <div class="bg-white rounded-xl p-6 border border-gray-200 shadow-sm hover:shadow-md transition">
+                        <div class="bg-white rounded-xl p-6 border shadow-sm">
                             <div class="flex items-center justify-between mb-3">
                                 <span class="text-gray-500 text-sm font-medium">Completed</span>
                                 <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
@@ -216,11 +187,10 @@
                                 </div>
                             </div>
                             <div class="text-3xl font-bold text-gray-900" id="completedJobsCount">0</div>
-                            <div class="text-xs text-gray-600 mt-2">All time</div>
                         </div>
                     </div>
 
-                    <!-- Empty State or Job List -->
+                    <!-- Empty State -->
                     <div id="emptyState" class="text-center py-12">
                         <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
                             <i class="fas fa-clipboard-list text-gray-400 text-2xl"></i>
@@ -228,20 +198,19 @@
                         <h3 class="text-xl font-semibold text-gray-900 mb-2">No jobs yet</h3>
                         <p class="text-gray-600 mb-6">Create your first job to get started with TradieIQ</p>
                         <button onclick="createNewJob()" 
-                            class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition shadow">
-                            <i class="fas fa-plus mr-2"></i>
-                            Create Your First Job
+                            class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition">
+                            <i class="fas fa-plus mr-2"></i>Create Your First Job
                         </button>
                     </div>
 
                     <!-- Recent Jobs -->
                     <div id="recentJobs" class="hidden">
-                        <div class="bg-white rounded-xl border border-gray-200 shadow-sm">
+                        <div class="bg-white rounded-xl border shadow-sm">
                             <div class="p-6 border-b">
                                 <h2 class="text-lg font-semibold text-gray-900">Recent Jobs</h2>
                             </div>
                             <div id="recentJobsList" class="p-6">
-                                <!-- Dynamic job cards will go here -->
+                                <!-- Jobs will appear here -->
                             </div>
                         </div>
                     </div>
@@ -250,17 +219,9 @@
         </main>
     </div>
 
-    <!-- Job Detail View -->
-    <div id="jobDetailView" class="hidden h-screen flex">
-        <!-- Job detail content will be added later -->
-        <div class="flex-1 flex items-center justify-center">
-            <p class="text-gray-600">Job detail view - to be implemented</p>
-        </div>
-    </div>
-
-    <!-- Firebase and App Scripts -->
-    <script type="module" src="/js/firebase-config.js"></script>
-    <script type="module" src="/js/auth.js"></script>
-    <script type="module" src="/js/app.js"></script>
+    <!-- Scripts with correct paths -->
+    <script type="module" src="./js/firebase-config.js"></script>
+    <script type="module" src="./js/auth.js"></script>
+    <script type="module" src="./js/app.js"></script>
 </body>
 </html>
