@@ -1,8 +1,8 @@
 {
-  "name": "tradie-note-ai",
-  "version": "1.0.0",
-  "description": "Smart job management for Australian trades",
-  "main": "index.js",
+  "name": "tradieiq",
+  "version": "1.0.1",
+  "description": "TradieIQ - Smart job management for Australian trades",
+  "type": "module",
   "scripts": {
     "dev": "vite",
     "build": "vite build",
@@ -13,8 +13,5 @@
   },
   "devDependencies": {
     "vite": "^4.4.5"
-  },
-  "keywords": ["tradie", "job-management", "australia"],
-  "author": "Your Name",
-  "license": "MIT"
+  }
 }
