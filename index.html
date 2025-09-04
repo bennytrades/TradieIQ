@@ -3,215 +3,201 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>TradieIQ - Smart Job Management for Australian Trades</title>
+    <title>TradieIQ - Job Management</title>
     <script src="https://cdn.tailwindcss.com"></script>
     <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
-    <link rel="stylesheet" href="./style.css">
 </head>
-<body class="bg-gray-50">
-    <!-- Notification -->
-    <div id="notification" class="notification">
-        <div class="flex items-center gap-3">
-            <i class="fas fa-check-circle text-green-500"></i>
-            <div>
-                <p class="font-medium text-gray-900" id="notificationTitle">Success!</p>
-                <p class="text-sm text-gray-600" id="notificationMessage">Action completed successfully.</p>
-            </div>
-        </div>
-    </div>
-
-    <!-- Loading Screen -->
-    <div id="loadingScreen" class="fixed inset-0 bg-white z-50 flex items-center justify-center">
-        <div class="text-center">
-            <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full mb-4 shadow-lg animate-pulse">
-                <i class="fas fa-clipboard-check text-white text-2xl"></i>
-            </div>
-            <p class="text-gray-600">Loading TradieIQ...</p>
-        </div>
-    </div>
+<body class="bg-gray-100">
 
     <!-- Sign In Page -->
-    <div id="signInView" class="hidden min-h-screen flex items-center justify-center bg-gradient-to-br from-blue-50 via-indigo-50 to-purple-50 p-4">
-        <div class="bg-white rounded-2xl shadow-xl p-8 w-full max-w-md">
+    <div id="signInPage" class="min-h-screen flex items-center justify-center">
+        <div class="bg-white p-8 rounded-lg shadow-md w-full max-w-md">
             <div class="text-center mb-8">
-                <div class="inline-flex items-center justify-center w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-full mb-4 shadow-lg">
-                    <i class="fas fa-clipboard-check text-white text-2xl"></i>
-                </div>
-                <h1 class="text-2xl font-bold text-gray-900">Welcome to TradieIQ</h1>
-                <p class="text-gray-600 mt-2">Smart job management for Australian trades</p>
+                <h1 class="text-2xl font-bold text-gray-900">TradieIQ</h1>
+                <p class="text-gray-600">Smart Job Management</p>
             </div>
 
-            <form id="signInForm">
-                <div class="space-y-4">
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Email</label>
-                        <input type="email" id="emailInput" placeholder="your@email.com" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+            <!-- Sign In Form -->
+            <div id="signInForm">
+                <h2 class="text-xl font-semibold mb-4">Sign In</h2>
+                <form id="loginForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                        <input type="email" id="loginEmail" required 
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
                     </div>
-                    <div>
-                        <label class="block text-sm font-medium text-gray-700 mb-2">Password</label>
-                        <input type="password" id="passwordInput" placeholder="••••••••" required
-                            class="w-full px-4 py-2 border border-gray-300 rounded-lg focus:ring-2 focus:ring-blue-500 focus:border-blue-500">
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                        <input type="password" id="loginPassword" required
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
                     </div>
-                </div>
+                    <button type="submit" id="signInBtn"
+                        class="w-full bg-blue-600 text-white py-2 px-4 rounded-lg hover:bg-blue-700">
+                        Sign In
+                    </button>
+                </form>
+                <p class="text-center mt-4 text-sm">
+                    Don't have an account? 
+                    <button onclick="showSignUp()" class="text-blue-600 hover:underline">Sign Up</button>
+                </p>
+            </div>
 
-                <button type="submit" id="signInBtn"
-                    class="w-full mt-6 bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-3 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition">
-                    Sign In
-                </button>
-            </form>
+            <!-- Sign Up Form -->
+            <div id="signUpForm" class="hidden">
+                <h2 class="text-xl font-semibold mb-4">Create Account</h2>
+                <form id="registerForm">
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Business Name</label>
+                        <input type="text" id="businessName" required 
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Email</label>
+                        <input type="email" id="registerEmail" required 
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                    <div class="mb-4">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Password</label>
+                        <input type="password" id="registerPassword" required minlength="6"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                        <p class="text-xs text-gray-500 mt-1">Minimum 6 characters</p>
+                    </div>
+                    <div class="mb-6">
+                        <label class="block text-gray-700 text-sm font-bold mb-2">Confirm Password</label>
+                        <input type="password" id="confirmPassword" required minlength="6"
+                            class="w-full px-3 py-2 border rounded-lg focus:outline-none focus:border-blue-500">
+                    </div>
+                    <button type="submit" id="signUpBtn"
+                        class="w-full bg-green-600 text-white py-2 px-4 rounded-lg hover:bg-green-700">
+                        Create Account
+                    </button>
+                </form>
+                <p class="text-center mt-4 text-sm">
+                    Already have an account? 
+                    <button onclick="showSignIn()" class="text-blue-600 hover:underline">Sign In</button>
+                </p>
+            </div>
 
-            <p class="text-center mt-6 text-sm text-gray-600">
-                Don't have an account? 
-                <a href="#" id="signUpLink" class="text-blue-600 hover:text-blue-700 font-medium">Sign up</a>
-            </p>
+            <!-- Error Messages -->
+            <div id="errorMessage" class="hidden mt-4 p-3 bg-red-100 border border-red-400 text-red-700 rounded">
+            </div>
+            
+            <!-- Success Messages -->
+            <div id="successMessage" class="hidden mt-4 p-3 bg-green-100 border border-green-400 text-green-700 rounded">
+            </div>
         </div>
     </div>
 
-    <!-- Dashboard -->
-    <div id="dashboardView" class="hidden h-screen flex">
-        <!-- Sidebar -->
-        <aside class="w-64 bg-white border-r border-gray-200 flex flex-col">
-            <div class="p-4 border-b">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-blue-600 to-indigo-600 rounded-lg flex items-center justify-center">
-                        <i class="fas fa-clipboard-check text-white"></i>
+    <!-- Dashboard Page -->
+    <div id="dashboardPage" class="hidden min-h-screen bg-gray-50">
+        <!-- Header -->
+        <header class="bg-white shadow">
+            <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+                <div class="flex justify-between h-16">
+                    <div class="flex items-center">
+                        <h1 class="text-xl font-semibold text-gray-900">TradieIQ Dashboard</h1>
                     </div>
-                    <div>
-                        <h2 class="font-bold text-gray-900">TradieIQ</h2>
-                        <p class="text-xs text-gray-500">Smart Job Management</p>
-                    </div>
-                </div>
-            </div>
-
-            <!-- Stats -->
-            <div class="p-4 bg-gradient-to-r from-blue-50 to-indigo-50 border-b">
-                <div class="flex justify-around text-center">
-                    <div>
-                        <div class="text-lg font-bold text-gray-900" id="statsActiveJobs">0</div>
-                        <div class="text-xs text-gray-600">Active</div>
-                    </div>
-                    <div class="border-l border-gray-300"></div>
-                    <div>
-                        <div class="text-lg font-bold text-gray-900" id="statsQuotes">0</div>
-                        <div class="text-xs text-gray-600">Quotes</div>
-                    </div>
-                    <div class="border-l border-gray-300"></div>
-                    <div>
-                        <div class="text-lg font-bold text-gray-900" id="statsToday">0</div>
-                        <div class="text-xs text-gray-600">Today</div>
-                    </div>
-                </div>
-            </div>
-
-            <!-- New Job Button -->
-            <div class="p-4">
-                <button onclick="createNewJob()" 
-                    class="w-full bg-gradient-to-r from-blue-600 to-indigo-600 text-white py-2 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition">
-                    <i class="fas fa-plus mr-2"></i>New Job
-                </button>
-            </div>
-
-            <!-- Jobs List -->
-            <div class="flex-1 overflow-y-auto px-2">
-                <div class="text-xs font-semibold text-gray-500 uppercase px-3 mb-2">Your Jobs</div>
-                <div id="jobsList" class="space-y-1">
-                    <div class="p-4 text-center text-sm text-gray-500">Loading...</div>
-                </div>
-            </div>
-
-            <!-- User Info -->
-            <div class="p-4 border-t bg-gray-50">
-                <div class="flex items-center gap-3">
-                    <div class="w-10 h-10 bg-gradient-to-br from-gray-400 to-gray-600 rounded-full flex items-center justify-center">
-                        <span class="text-white font-bold" id="userInitials">?</span>
-                    </div>
-                    <div class="flex-1">
-                        <div class="text-sm font-medium text-gray-900" id="userDisplayName">Loading...</div>
-                        <div class="text-xs text-gray-500" id="userEmail">user@example.com</div>
-                    </div>
-                    <button onclick="handleSignOut()" class="text-gray-400 hover:text-gray-600 transition">
-                        <i class="fas fa-sign-out-alt"></i>
-                    </button>
-                </div>
-            </div>
-        </aside>
-
-        <!-- Main Content -->
-        <main class="flex-1 bg-gradient-to-br from-gray-50 to-blue-50 overflow-auto">
-            <div class="p-8">
-                <div class="max-w-7xl mx-auto">
-                    <!-- Welcome -->
-                    <div class="mb-8">
-                        <h1 class="text-4xl font-bold text-gray-900 mb-2">Welcome back, <span id="welcomeUserName">User</span>!</h1>
-                        <p class="text-gray-600 text-lg" id="welcomeStats">Loading your job statistics...</p>
-                    </div>
-
-                    <!-- Stats Cards -->
-                    <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
-                        <div class="bg-white rounded-xl p-6 border shadow-sm">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-gray-500 text-sm font-medium">Total Value</span>
-                                <div class="w-10 h-10 bg-green-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-dollar-sign text-green-600"></i>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-bold text-gray-900" id="totalValue">$0</div>
-                        </div>
-
-                        <div class="bg-white rounded-xl p-6 border shadow-sm">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-gray-500 text-sm font-medium">Active Jobs</span>
-                                <div class="w-10 h-10 bg-blue-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-briefcase text-blue-600"></i>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-bold text-gray-900" id="activeJobsCount">0</div>
-                        </div>
-
-                        <div class="bg-white rounded-xl p-6 border shadow-sm">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-gray-500 text-sm font-medium">Pending Quotes</span>
-                                <div class="w-10 h-10 bg-yellow-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-file-invoice text-yellow-600"></i>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-bold text-gray-900" id="quotedJobsCount">0</div>
-                        </div>
-
-                        <div class="bg-white rounded-xl p-6 border shadow-sm">
-                            <div class="flex items-center justify-between mb-3">
-                                <span class="text-gray-500 text-sm font-medium">Completed</span>
-                                <div class="w-10 h-10 bg-purple-100 rounded-full flex items-center justify-center">
-                                    <i class="fas fa-check-circle text-purple-600"></i>
-                                </div>
-                            </div>
-                            <div class="text-3xl font-bold text-gray-900" id="completedJobsCount">0</div>
-                        </div>
-                    </div>
-
-                    <!-- Empty State -->
-                    <div id="emptyState" class="text-center py-12">
-                        <div class="inline-flex items-center justify-center w-16 h-16 bg-gray-100 rounded-full mb-4">
-                            <i class="fas fa-clipboard-list text-gray-400 text-2xl"></i>
-                        </div>
-                        <h3 class="text-xl font-semibold text-gray-900 mb-2">No jobs yet</h3>
-                        <p class="text-gray-600 mb-6">Create your first job to get started with TradieIQ</p>
-                        <button onclick="createNewJob()" 
-                            class="bg-gradient-to-r from-blue-600 to-indigo-600 text-white px-6 py-3 rounded-lg font-medium hover:from-blue-700 hover:to-indigo-700 transition">
-                            <i class="fas fa-plus mr-2"></i>Create Your First Job
+                    <div class="flex items-center space-x-4">
+                        <span id="userInfo" class="text-gray-700"></span>
+                        <button onclick="signOut()" class="bg-red-600 text-white px-4 py-2 rounded hover:bg-red-700">
+                            Sign Out
                         </button>
                     </div>
+                </div>
+            </div>
+        </header>
 
-                    <!-- Recent Jobs -->
-                    <div id="recentJobs" class="hidden">
-                        <div class="bg-white rounded-xl border shadow-sm">
-                            <div class="p-6 border-b">
-                                <h2 class="text-lg font-semibold text-gray-900">Recent Jobs</h2>
+        <!-- Main Content -->
+        <main class="max-w-7xl mx-auto py-6 sm:px-6 lg:px-8">
+            <div class="px-4 py-6 sm:px-0">
+                
+                <!-- Quick Stats -->
+                <div class="grid grid-cols-1 md:grid-cols-4 gap-6 mb-8">
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-2 bg-blue-100 rounded-md">
+                                <i class="fas fa-briefcase text-blue-600"></i>
                             </div>
-                            <div id="recentJobsList" class="p-6">
-                                <!-- Jobs will appear here -->
+                            <div class="ml-4">
+                                <p class="text-2xl font-semibold text-gray-900" id="totalJobs">0</p>
+                                <p class="text-gray-600">Total Jobs</p>
                             </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-2 bg-green-100 rounded-md">
+                                <i class="fas fa-check-circle text-green-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-2xl font-semibold text-gray-900" id="completedJobs">0</p>
+                                <p class="text-gray-600">Completed</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-2 bg-yellow-100 rounded-md">
+                                <i class="fas fa-clock text-yellow-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-2xl font-semibold text-gray-900" id="pendingJobs">0</p>
+                                <p class="text-gray-600">Pending</p>
+                            </div>
+                        </div>
+                    </div>
+                    
+                    <div class="bg-white p-6 rounded-lg shadow">
+                        <div class="flex items-center">
+                            <div class="p-2 bg-purple-100 rounded-md">
+                                <i class="fas fa-dollar-sign text-purple-600"></i>
+                            </div>
+                            <div class="ml-4">
+                                <p class="text-2xl font-semibold text-gray-900" id="totalValue">$0</p>
+                                <p class="text-gray-600">Total Value</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Add New Job -->
+                <div class="bg-white shadow rounded-lg mb-8">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Add New Job</h3>
+                        <form id="newJobForm" class="grid grid-cols-1 gap-6 sm:grid-cols-2">
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Client Name</label>
+                                <input type="text" id="clientName" required
+                                    class="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2">
+                            </div>
+                            <div>
+                                <label class="block text-sm font-medium text-gray-700">Job Value</label>
+                                <input type="text" id="jobValue" placeholder="$1,500"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2">
+                            </div>
+                            <div class="sm:col-span-2">
+                                <label class="block text-sm font-medium text-gray-700">Description</label>
+                                <textarea id="jobDescription" rows="3"
+                                    class="mt-1 block w-full border border-gray-300 rounded-md px-3 py-2"></textarea>
+                            </div>
+                            <div class="sm:col-span-2">
+                                <button type="submit" 
+                                    class="bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700">
+                                    Add Job
+                                </button>
+                            </div>
+                        </form>
+                    </div>
+                </div>
+
+                <!-- Jobs List -->
+                <div class="bg-white shadow rounded-lg">
+                    <div class="px-4 py-5 sm:p-6">
+                        <h3 class="text-lg font-medium text-gray-900 mb-4">Your Jobs</h3>
+                        <div id="jobsList">
+                            <p class="text-gray-500 text-center py-8">No jobs yet. Add your first job above.</p>
                         </div>
                     </div>
                 </div>
@@ -219,9 +205,275 @@
         </main>
     </div>
 
-    <!-- Scripts with correct paths -->
-    <script type="module" src="./js/firebase-config.js"></script>
-    <script type="module" src="./js/auth.js"></script>
-    <script type="module" src="./js/app.js"></script>
+    <!-- Firebase Scripts -->
+    <script type="module">
+        // Import Firebase
+        import { initializeApp } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js';
+        import { getAuth, signInWithEmailAndPassword, createUserWithEmailAndPassword, signOut, onAuthStateChanged } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js';
+        import { getFirestore, collection, addDoc, getDocs, query, where, orderBy } from 'https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js';
+
+        // Firebase config
+        const firebaseConfig = {
+            apiKey: "AIzaSyDPMEbNHpOnVoTMBt-Vd8sjCw04NdqHZiMU",
+            authDomain: "tradieiq-8d4a5.firebaseapp.com",
+            projectId: "tradieiq-8d4a5",
+            storageBucket: "tradieiq-8d4a5.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abc123def456"
+        };
+
+        // Initialize Firebase
+        const app = initializeApp(firebaseConfig);
+        const auth = getAuth(app);
+        const db = getFirestore(app);
+
+        // Global variables
+        let currentUser = null;
+        let userJobs = [];
+
+        // Show/Hide functions
+        function showSignIn() {
+            document.getElementById('signInForm').classList.remove('hidden');
+            document.getElementById('signUpForm').classList.add('hidden');
+            clearMessages();
+        }
+
+        function showSignUp() {
+            document.getElementById('signInForm').classList.add('hidden');
+            document.getElementById('signUpForm').classList.remove('hidden');
+            clearMessages();
+        }
+
+        function showError(message) {
+            const errorDiv = document.getElementById('errorMessage');
+            errorDiv.textContent = message;
+            errorDiv.classList.remove('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+        }
+
+        function showSuccess(message) {
+            const successDiv = document.getElementById('successMessage');
+            successDiv.textContent = message;
+            successDiv.classList.remove('hidden');
+            document.getElementById('errorMessage').classList.add('hidden');
+        }
+
+        function clearMessages() {
+            document.getElementById('errorMessage').classList.add('hidden');
+            document.getElementById('successMessage').classList.add('hidden');
+        }
+
+        // Authentication functions
+        async function handleSignIn(e) {
+            e.preventDefault();
+            const email = document.getElementById('loginEmail').value;
+            const password = document.getElementById('loginPassword').value;
+            const signInBtn = document.getElementById('signInBtn');
+
+            signInBtn.textContent = 'Signing In...';
+            signInBtn.disabled = true;
+
+            try {
+                await signInWithEmailAndPassword(auth, email, password);
+                // Success handled by onAuthStateChanged
+            } catch (error) {
+                console.error('Sign in error:', error);
+                let message = 'Sign in failed. ';
+                
+                switch(error.code) {
+                    case 'auth/user-not-found':
+                        message += 'No account found with this email.';
+                        break;
+                    case 'auth/wrong-password':
+                        message += 'Incorrect password.';
+                        break;
+                    case 'auth/invalid-email':
+                        message += 'Invalid email address.';
+                        break;
+                    case 'auth/invalid-credential':
+                        message += 'Invalid email or password.';
+                        break;
+                    default:
+                        message += error.message;
+                }
+                showError(message);
+            } finally {
+                signInBtn.textContent = 'Sign In';
+                signInBtn.disabled = false;
+            }
+        }
+
+        async function handleSignUp(e) {
+            e.preventDefault();
+            const businessName = document.getElementById('businessName').value;
+            const email = document.getElementById('registerEmail').value;
+            const password = document.getElementById('registerPassword').value;
+            const confirmPassword = document.getElementById('confirmPassword').value;
+            const signUpBtn = document.getElementById('signUpBtn');
+
+            if (password !== confirmPassword) {
+                showError('Passwords do not match.');
+                return;
+            }
+
+            signUpBtn.textContent = 'Creating Account...';
+            signUpBtn.disabled = true;
+
+            try {
+                const userCredential = await createUserWithEmailAndPassword(auth, email, password);
+                showSuccess('Account created successfully! Welcome to TradieIQ.');
+                // Success handled by onAuthStateChanged
+            } catch (error) {
+                console.error('Sign up error:', error);
+                let message = 'Account creation failed. ';
+                
+                switch(error.code) {
+                    case 'auth/email-already-in-use':
+                        message += 'An account with this email already exists.';
+                        break;
+                    case 'auth/weak-password':
+                        message += 'Password should be at least 6 characters.';
+                        break;
+                    case 'auth/invalid-email':
+                        message += 'Invalid email address.';
+                        break;
+                    default:
+                        message += error.message;
+                }
+                showError(message);
+            } finally {
+                signUpBtn.textContent = 'Create Account';
+                signUpBtn.disabled = false;
+            }
+        }
+
+        async function handleSignOut() {
+            try {
+                await signOut(auth);
+            } catch (error) {
+                console.error('Sign out error:', error);
+            }
+        }
+
+        // Job management
+        async function addJob(e) {
+            e.preventDefault();
+            const clientName = document.getElementById('clientName').value;
+            const jobValue = document.getElementById('jobValue').value || '$0';
+            const jobDescription = document.getElementById('jobDescription').value;
+
+            try {
+                await addDoc(collection(db, 'jobs'), {
+                    clientName: clientName,
+                    value: jobValue,
+                    description: jobDescription,
+                    status: 'pending',
+                    userId: currentUser.uid,
+                    createdAt: new Date(),
+                    updatedAt: new Date()
+                });
+
+                // Clear form
+                document.getElementById('newJobForm').reset();
+                loadJobs(); // Reload jobs
+                showSuccess('Job added successfully!');
+                setTimeout(() => clearMessages(), 3000);
+            } catch (error) {
+                console.error('Error adding job:', error);
+                showError('Failed to add job. Please try again.');
+            }
+        }
+
+        async function loadJobs() {
+            if (!currentUser) return;
+
+            try {
+                const q = query(
+                    collection(db, 'jobs'), 
+                    where('userId', '==', currentUser.uid),
+                    orderBy('createdAt', 'desc')
+                );
+                const querySnapshot = await getDocs(q);
+                
+                userJobs = [];
+                querySnapshot.forEach((doc) => {
+                    userJobs.push({ id: doc.id, ...doc.data() });
+                });
+
+                renderJobs();
+                updateStats();
+            } catch (error) {
+                console.error('Error loading jobs:', error);
+            }
+        }
+
+        function renderJobs() {
+            const jobsList = document.getElementById('jobsList');
+            
+            if (userJobs.length === 0) {
+                jobsList.innerHTML = '<p class="text-gray-500 text-center py-8">No jobs yet. Add your first job above.</p>';
+                return;
+            }
+
+            jobsList.innerHTML = userJobs.map(job => `
+                <div class="border-b border-gray-200 py-4">
+                    <div class="flex justify-between items-start">
+                        <div>
+                            <h4 class="font-medium text-gray-900">${job.clientName}</h4>
+                            <p class="text-gray-600 text-sm">${job.description}</p>
+                            <span class="inline-flex items-center px-2.5 py-0.5 rounded-full text-xs font-medium bg-yellow-100 text-yellow-800">
+                                ${job.status}
+                            </span>
+                        </div>
+                        <div class="text-right">
+                            <p class="font-semibold text-gray-900">${job.value}</p>
+                            <p class="text-xs text-gray-500">${job.createdAt.toDate().toLocaleDateString()}</p>
+                        </div>
+                    </div>
+                </div>
+            `).join('');
+        }
+
+        function updateStats() {
+            const totalJobs = userJobs.length;
+            const completedJobs = userJobs.filter(job => job.status === 'completed').length;
+            const pendingJobs = userJobs.filter(job => job.status === 'pending').length;
+            
+            const totalValue = userJobs.reduce((sum, job) => {
+                const value = parseFloat(job.value.replace(/[$,]/g, '')) || 0;
+                return sum + value;
+            }, 0);
+
+            document.getElementById('totalJobs').textContent = totalJobs;
+            document.getElementById('completedJobs').textContent = completedJobs;
+            document.getElementById('pendingJobs').textContent = pendingJobs;
+            document.getElementById('totalValue').textContent = '$' + totalValue.toLocaleString();
+        }
+
+        // Event listeners
+        document.getElementById('loginForm').addEventListener('submit', handleSignIn);
+        document.getElementById('registerForm').addEventListener('submit', handleSignUp);
+        document.getElementById('newJobForm').addEventListener('submit', addJob);
+
+        // Auth state observer
+        onAuthStateChanged(auth, (user) => {
+            if (user) {
+                currentUser = user;
+                document.getElementById('signInPage').classList.add('hidden');
+                document.getElementById('dashboardPage').classList.remove('hidden');
+                document.getElementById('userInfo').textContent = user.email;
+                loadJobs();
+            } else {
+                currentUser = null;
+                document.getElementById('signInPage').classList.remove('hidden');
+                document.getElementById('dashboardPage').classList.add('hidden');
+            }
+        });
+
+        // Make functions global
+        window.showSignIn = showSignIn;
+        window.showSignUp = showSignUp;
+        window.signOut = handleSignOut;
+    </script>
 </body>
 </html>
