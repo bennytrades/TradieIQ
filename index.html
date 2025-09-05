@@ -214,13 +214,12 @@
 
         // Firebase config
         const firebaseConfig = {
-            apiKey: "AIzaSyDPMEbNHpOmVoTWBtVd8sjCw04NdaHZiWU",
-            authDomain: "tradieiq-ff7c7.firebaseapp.com",
-            projectId: "tradieiq-ff7c7",
-            storageBucket: "tradieiq-ff7c7.firebasestorage.app",
-            messagingSenderId: "1032911231447",
-            appId: "1:1032911231447:web:3ec2652be817c1c28cd392",
-            measurementId: "G-GR2GLP5FKG"
+            apiKey: "AIzaSyDPMEbNHpOnVoTMBt-Vd8sjCw04NdqHZiMU",
+            authDomain: "tradieiq-8d4a5.firebaseapp.com",
+            projectId: "tradieiq-8d4a5",
+            storageBucket: "tradieiq-8d4a5.appspot.com",
+            messagingSenderId: "123456789012",
+            appId: "1:123456789012:web:abc123def456"
         };
 
         // Initialize Firebase
@@ -462,10 +461,13 @@
                 currentUser = user;
                 document.getElementById('signInPage').classList.add('hidden');
                 document.getElementById('dashboardPage').classList.remove('hidden');
-                document.getElementById('userInfo').textContent = user.email;
+                
+                // Load user profile and jobs
+                loadUserProfile();
                 loadJobs();
             } else {
                 currentUser = null;
+                userProfile = null;
                 document.getElementById('signInPage').classList.remove('hidden');
                 document.getElementById('dashboardPage').classList.add('hidden');
             }
